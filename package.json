@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha Ping/ping.spec.js"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.1"
+  },
+  "devDependencies": {}
+}

@@ -8,8 +8,8 @@ describe('Ping', () => {
 
     ping(context)
 
-    expect(context.res.body).to.equal(
-      'Pong! Plus some more to test the deployment works!'
-    )
+    expect(context.res.body).to.deep.equal({
+      msg: 'Pong! Plus some more to test the deployment works!'
+    })
   })
 })

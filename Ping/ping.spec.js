@@ -18,8 +18,6 @@ describe('Ping', () => {
 
     ping(context)
 
-    expect(context.res.headers).to.deep.equal({
-      contentType: 'application/json'
-    })
+    expect(context.res.headers['Content-Type']).to.equal('application/json')
   })
 })

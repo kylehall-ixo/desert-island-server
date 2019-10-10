@@ -9,7 +9,7 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '06864974-42ce-4ef2-95e5-58778c0c039b'
+  azureSubscription: '53e97d5b-9c1a-4b80-8e1c-99141d1495ae'
 
   # Function app name
   functionAppName: 'desert-island'

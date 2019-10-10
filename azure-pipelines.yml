@@ -57,6 +57,11 @@ stages:
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: $(System.DefaultWorkingDirectory)/template.json
+        artifact: deploymentTemplate
+
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 
@@ -73,7 +78,18 @@ stages:
     strategy:
       runOnce:
         deploy:
-          steps:            
+          steps:
+          - task: AzureResourceManagerTemplateDeployment@3
+            inputs:
+              deploymentScope: 'Resource Group'
+              ConnectedServiceName: 'Microsoft Azure Enterprise (53e97d5b-9c1a-4b80-8e1c-99141d1495ae)-4880'
+              subscriptionName: '53e97d5b-9c1a-4b80-8e1c-99141d1495ae'
+              action: 'Create Or Update Resource Group'
+              resourceGroupName: 'desert-island'
+              location: 'Central US'
+              templateLocation: 'Linked artifact'
+              csmFile: '$(Pipeline.Workspace)/deploymentTemplate/template.json'
+              deploymentMode: 'Incremental'
           - task: AzureFunctionApp@1
             displayName: 'Azure Functions App Deploy: desert-island'
             inputs:
